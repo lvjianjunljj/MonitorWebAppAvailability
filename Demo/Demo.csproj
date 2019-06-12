@@ -59,7 +59,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleWebTestPlugin.cs" />
     <Compile Include="JWTTokenWebTestPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
