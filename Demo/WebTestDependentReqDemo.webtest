@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebTest Name="WebTestDependentReqDemo" Id="5a69a035-cc3c-47e6-8cab-fffa05621021" Owner="" Priority="2147483647" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="0" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="WebTest1.fa607948-47d7-4321-9dcf-73c635a17ac7.rec.webtestresult" ResultsLocale="">
+  <Items>
+    <Comment CommentText="For the client_secret used in the request string body for AAD token, we should use the string encoded by UrlEncoder" />
+    <Comment CommentText="For the dependent requests, It is that the request in Dependent Requests dependents on the main request instead of the other way around. And we can extract the response string to set it as a parameter used by dependent request." />
+    <Comment CommentText="For Extraction Rules, through my practice, when we use Extract Text, the extract for the response string ignores the spaces in the string." />
+    <Comment CommentText="For deploying in Azure Aplication Insights, we can get the details from the doc: https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability" />
+    <Request Method="POST" Guid="fec07f20-7569-4e7c-86e3-dae560567201" Version="1.1" Url="https://login.microsoftonline.com/{{ms_tenant_id}}/oauth2/token" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <DependentRequests>
+        <Request Method="GET" Guid="cd3774db-e11f-4e1d-9e67-d0fd0f507371" Version="1.1" Url="http://10.190.190.122:3000/datacop/api/v1/alerts" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+          <Headers>
+            <Header Name="Content-Type" Value="application/json" />
+            <Header Name="Authorization" Value="Bearer {{AccessToken}}" />
+          </Headers>
+        </Request>
+      </DependentRequests>
+      <ExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="AccessToken" DisplayName="Extract Text" Description="Extract text from the response and place it into the test context.">
+          <RuleParameters>
+            <RuleParameter Name="StartsWith" Value="access_token&quot;:&quot;" />
+            <RuleParameter Name="EndsWith" Value="&quot;}" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="True" />
+            <RuleParameter Name="Required" Value="True" />
+            <RuleParameter Name="ExtractRandomMatch" Value="False" />
+            <RuleParameter Name="Index" Value="0" />
+            <RuleParameter Name="HtmlDecode" Value="False" />
+            <RuleParameter Name="SearchInHeaders" Value="False" />
+          </RuleParameters>
+        </ExtractionRule>
+      </ExtractionRules>
+      <StringHttpBody ContentType="" InsertByteOrderMark="False">ZwByAGEAbgB0AF8AdAB5AHAAZQA9AGMAbABpAGUAbgB0AF8AYwByAGUAZABlAG4AdABpAGEAbABzACYAYwBsAGkAZQBuAHQAXwBpAGQAPQB7AHsAYwBsAGkAZQBuAHQAXwBpAGQAfQB9ACYAYwBsAGkAZQBuAHQAXwBzAGUAYwByAGUAdAA9AHsAewBjAGwAaQBlAG4AdABfAHMAZQBjAHIAZQB0AH0AfQAmAHIAZQBzAG8AdQByAGMAZQA9AHsAewByAGUAcwBvAHUAcgBjAGUAfQB9AA==</StringHttpBody>
+    </Request>
+  </Items>
+  <ContextParameters>
+    <ContextParameter Name="client_id" Value="83ac8948-e5e1-4bbd-97ea-798a13dc8bc6" />
+    <ContextParameter Name="client_secret" Value="" />
+    <ContextParameter Name="resource" Value="83ac8948-e5e1-4bbd-97ea-798a13dc8bc6" />
+    <ContextParameter Name="ms_tenant_id" Value="72f988bf-86f1-41af-91ab-2d7cd011db47" />
+  </ContextParameters>
+</WebTest>

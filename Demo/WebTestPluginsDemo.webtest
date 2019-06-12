@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebTest Name="WebTestPluginsDemo" Id="b0c2e692-5d44-40da-9697-c3c424113fb2" Owner="" Priority="2147483647" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="0" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="" ResultsLocale="">
+  <Items>
+    <Request Method="GET" Guid="bca2968e-7a44-4317-a995-a8056b3930eb" Version="1.1" Url="https://datacopppefe.azurewebsites.net/datacop/api/v1/alerts" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Content-Type" Value="application/json" />
+      </Headers>
+    </Request>
+    <Comment CommentText="Simple doc Link: https://blogs.msdn.microsoft.com/monub/2016/03/29/web-and-performance-testing-jwt-token-web-test-plugin-for-authentication/" />
+    <Comment CommentText="If you add a plugin class but not found it in the Test Plug-in list, you can run another test then the plugin list will update." />
+  </Items>
+  <WebTestPlugins>
+    <WebTestPlugin Classname="WebAndLoadTestProject.JWTTokenWebTestPlugin, Demo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DisplayName="JWTTokenWebTestPlugin" Description="">
+      <RuleParameters>
+        <RuleParameter Name="TenantId" Value="72f988bf-86f1-41af-91ab-2d7cd011db47" />
+        <RuleParameter Name="ClientId" Value="83ac8948-e5e1-4bbd-97ea-798a13dc8bc6" />
+        <RuleParameter Name="ClientSecret" Value="" />
+        <RuleParameter Name="Resource" Value="83ac8948-e5e1-4bbd-97ea-798a13dc8bc6" />
+      </RuleParameters>
+    </WebTestPlugin>
+  </WebTestPlugins>
+</WebTest>
